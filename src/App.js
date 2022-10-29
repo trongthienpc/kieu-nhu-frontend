@@ -1,14 +1,18 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import Page404 from "./pages/Page404";
-import { IntlProvider } from "react-intl";
 import { getDirection } from "./helpers/Utils";
-import { Suspense, useEffect } from "react";
-import { NotificationContainer } from "./components/common/react-notifications";
-import AppLocale from "./lang";
+import React, { Suspense, useEffect } from "react";
+import User from "./pages/user";
+import ViewApp from "./pages/app";
+
 function App({ locale }) {
   const direction = getDirection();
-  const currentAppLocale = AppLocale["en"];
   useEffect(() => {
     if (direction.isRtl) {
       document.body.classList.add("rtl");
@@ -28,9 +32,17 @@ function App({ locale }) {
         {/* <NotificationContainer /> */}
 
         <Suspense fallback={<div className="loading" />}>
-          <Routes>
-            <Route path="/*" element={<Page404 />} />
-          </Routes>
+          <Router>
+            <Switch>
+              {/* <Route path="/user" render={(props) => <ViewUser {...props} />} /> */}
+
+              <Route path="/error" exact component={Page404} />
+              <Route path="/user" component={User} />
+              <Route path="/app" component={ViewApp} />
+
+              <Redirect to="/error" />
+            </Switch>
+          </Router>
         </Suspense>
       </>
       {/* </IntlProvider> */}

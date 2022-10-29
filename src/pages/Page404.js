@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Row, Card, CardTitle } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import { Colxx } from "../components/common/CustomBootstrap";
-import IntlMessages from "../helpers/IntlMessages";
 import { adminRoot } from "../constants/defaultValues";
 
 const Page404 = () => {
@@ -18,7 +17,7 @@ const Page404 = () => {
 
   return (
     <>
-      {/* <div className="fixed-background" /> */}
+      <div className="fixed-background" />
       <main>
         <div className="container">
           <Row className="h-100">
@@ -33,17 +32,16 @@ const Page404 = () => {
                     <span className="logo-single" />
                   </Link>
                   <CardTitle className="mb-4">
-                    {/* <IntlMessages id="pages.error-title" /> */}
+                    Ooops... looks like an error occurred!
                   </CardTitle>
-                  <p className="mb-0 text-muted text-small mb-0">
-                    {/* <IntlMessages id="pages.error-code" /> */}
-                  </p>
+                  <p className="mb-0 text-muted text-small mb-0">Error code</p>
                   <p className="display-1 font-weight-bold mb-5">404</p>
                   <Link
                     to={adminRoot}
                     className="btn btn-primary btn-shadow btn-lg"
                   >
                     {/* <IntlMessages id="pages.go-back-home" /> */}
+                    GO BACK HOME
                   </Link>
                 </div>
               </Card>
